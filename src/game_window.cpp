@@ -1,6 +1,6 @@
 namespace gwin {
 
-GameWindow::GameWindow(const char* title, const GameWindowOptOpenGL& opt)
+bool GameWindow::open(const char* title, const GameWindowOptOpenGL& opt)
 {
   SDL_GL_SetAttribute(SDL_GL_RED_SIZE, 8);
   SDL_GL_SetAttribute(SDL_GL_GREEN_SIZE, 8);
@@ -14,6 +14,7 @@ GameWindow::GameWindow(const char* title, const GameWindowOptOpenGL& opt)
   SDL_GL_SetAttribute(SDL_GL_CONTEXT_MINOR_VERSION, opt.minor);
 
   uint32_t flags = SDL_WINDOW_OPENGL;
+  if (opt.fullscreen) { flags |= SDL_WINDOW_FULLSCREEN_DESKTOP; }
   if (opt.resizable) { flags |= SDL_WINDOW_RESIZABLE; }
  
   this->win = SDL_CreateWindow(
@@ -24,18 +25,24 @@ GameWindow::GameWindow(const char* title, const GameWindowOptOpenGL& opt)
       flags
   );
 
-  if (this->win) { this->glc = SDL_GL_CreateContext(this->win); };
-  if (this->glc) {
+  if (this->win == NULL) { return false; }
 
-    SDL_GL_MakeCurrent(this->win, this->glc);
-
-    if (opt.vsync) {
-      if (SDL_GL_SetSwapInterval(-1) < 0) { SDL_GL_SetSwapInterval(1); }
-    }
+  this->glc = SDL_GL_CreateContext(this->win);
+  if (this->glc == NULL) {
+    this->close();
+    return false;
   }
+
+  this->make_current();
+
+  if (opt.vsync) {
+    if (SDL_GL_SetSwapInterval(-1) < 0) { SDL_GL_SetSwapInterval(1); }
+  }
+
+  return true;
 }
 
-GameWindow::~GameWindow()
+void GameWindow::close()
 {
   if (this->glc) { SDL_GL_DeleteContext(this->glc); }
   if (this->win) { SDL_DestroyWindow(this->win); }

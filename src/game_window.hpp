@@ -2,6 +2,7 @@ namespace gwin {
 
 struct GameWindowOptOpenGL {
 
+  bool fullscreen;
   bool resizable;
   bool set_pos;
   int32_t x, y;
@@ -19,8 +20,8 @@ struct GameWindow {
   SDL_Window* win;
   SDL_GLContext glc;
 
-  GameWindow(const char* title, const GameWindowOptOpenGL& opt);
-  ~GameWindow();
+  bool open(const char* title, const GameWindowOptOpenGL& opt);
+  void close();
 
   void make_current();
   void flip();
