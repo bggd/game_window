@@ -44,8 +44,14 @@ bool GameWindow::open(const char* title, const GameWindowOptOpenGL& opt)
 
 void GameWindow::close()
 {
-  if (this->glc) { SDL_GL_DeleteContext(this->glc); }
-  if (this->win) { SDL_DestroyWindow(this->win); }
+  if (this->glc) {
+    SDL_GL_DeleteContext(this->glc);
+    this->glc = nullptr;
+  }
+  if (this->win) {
+    SDL_DestroyWindow(this->win);
+    this->win = nullptr;
+  }
 }
 
 void GameWindow::make_current()
@@ -58,4 +64,4 @@ void GameWindow::flip()
   SDL_GL_SwapWindow(this->win);
 }
 
-}
+} // namespace gwin

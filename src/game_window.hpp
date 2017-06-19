@@ -17,8 +17,8 @@ struct GameWindowOptOpenGL {
 
 struct GameWindow {
 
-  SDL_Window* win;
-  SDL_GLContext glc;
+  SDL_Window* win = nullptr;
+  SDL_GLContext glc = nullptr;
 
   bool open(const char* title, const GameWindowOptOpenGL& opt);
   void close();
