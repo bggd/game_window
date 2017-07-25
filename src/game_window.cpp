@@ -46,11 +46,11 @@ void GameWindow::close()
 {
   if (this->glc) {
     SDL_GL_DeleteContext(this->glc);
-    this->glc = nullptr;
+    this->glc = NULL;
   }
   if (this->win) {
     SDL_DestroyWindow(this->win);
-    this->win = nullptr;
+    this->win = NULL;
   }
 }
 
