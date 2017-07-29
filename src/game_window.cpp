@@ -9,7 +9,7 @@ bool GameWindow::open(const char* title, const GameWindowOptOpenGL& opt)
   SDL_GL_SetAttribute(SDL_GL_DEPTH_SIZE, 24);
 
   SDL_GL_SetAttribute(SDL_GL_CONTEXT_FLAGS, opt.debug_ctx ? SDL_GL_CONTEXT_DEBUG_FLAG : 0);
-  SDL_GL_SetAttribute(SDL_GL_CONTEXT_PROFILE_MASK, SDL_GL_CONTEXT_PROFILE_CORE);
+  SDL_GL_SetAttribute(SDL_GL_CONTEXT_PROFILE_MASK, opt.gles ? SDL_GL_CONTEXT_PROFILE_ES : SDL_GL_CONTEXT_PROFILE_CORE);
   SDL_GL_SetAttribute(SDL_GL_CONTEXT_MAJOR_VERSION, opt.major);
   SDL_GL_SetAttribute(SDL_GL_CONTEXT_MINOR_VERSION, opt.minor);
 
