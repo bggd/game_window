@@ -23,6 +23,8 @@ struct GameWindow {
   bool open(const char* title, const GameWindowOptOpenGL& opt);
   void close();
 
+  GameWindowOptOpenGL get_info();
+
   void make_current();
   void flip();
 
