@@ -58,8 +58,8 @@ GameWindowOptOpenGL GameWindow::get_info()
 {
   GameWindowOptOpenGL info;
 
-  info.fullscreen = SDL_GetWindowFlags(this->win) | SDL_WINDOW_FULLSCREEN_DESKTOP;
-  info.resizable = SDL_GetWindowFlags(this->win) | SDL_WINDOW_RESIZABLE;
+  info.fullscreen = SDL_GetWindowFlags(this->win) & SDL_WINDOW_FULLSCREEN_DESKTOP;
+  info.resizable = SDL_GetWindowFlags(this->win) & SDL_WINDOW_RESIZABLE;
   info.set_pos = false;
   int32_t x, y;
   SDL_GetWindowPosition(this->win, &x, &y);
@@ -70,14 +70,14 @@ GameWindowOptOpenGL GameWindow::get_info()
   info.h = y;
   int32_t v;
   SDL_GL_GetAttribute(SDL_GL_CONTEXT_PROFILE_MASK, &v);
-  info.gles = v | SDL_GL_CONTEXT_PROFILE_ES;
+  info.gles = v & SDL_GL_CONTEXT_PROFILE_ES;
   int32_t major, minor;
   SDL_GL_GetAttribute(SDL_GL_CONTEXT_MAJOR_VERSION, &major);
   SDL_GL_GetAttribute(SDL_GL_CONTEXT_MINOR_VERSION, &minor);
   info.major = major;
   info.minor = minor;
   SDL_GL_GetAttribute(SDL_GL_CONTEXT_FLAGS, &v);
-  info.debug_ctx = v | SDL_GL_CONTEXT_DEBUG_FLAG;
+  info.debug_ctx = v & SDL_GL_CONTEXT_DEBUG_FLAG;
   info.vsync = SDL_GL_GetSwapInterval() == 1;
 
   return info;
