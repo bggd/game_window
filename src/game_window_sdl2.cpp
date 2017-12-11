@@ -1,6 +1,6 @@
-namespace gwin {
+namespace gwin { namespace detail {
 
-bool GameWindow::open(const char* title, const GameWindowOptOpenGL& opt)
+bool GameWindowSDL2::open(const char* title, const GameWindowOptOpenGL& opt)
 {
   SDL_GL_SetAttribute(SDL_GL_RED_SIZE, 8);
   SDL_GL_SetAttribute(SDL_GL_GREEN_SIZE, 8);
@@ -42,7 +42,7 @@ bool GameWindow::open(const char* title, const GameWindowOptOpenGL& opt)
   return true;
 }
 
-void GameWindow::close()
+void GameWindowSDL2::close()
 {
   if (this->glc) {
     SDL_GL_DeleteContext(this->glc);
@@ -54,7 +54,7 @@ void GameWindow::close()
   }
 }
 
-GameWindowOptOpenGL GameWindow::get_info()
+GameWindowOptOpenGL GameWindowSDL2::get_info()
 {
   GameWindowOptOpenGL info;
 
@@ -83,14 +83,14 @@ GameWindowOptOpenGL GameWindow::get_info()
   return info;
 }
 
-void GameWindow::make_current()
+void GameWindowSDL2::make_current()
 {
   SDL_GL_MakeCurrent(this->win, this->glc);
 }
 
-void GameWindow::flip()
+void GameWindowSDL2::flip()
 {
   SDL_GL_SwapWindow(this->win);
 }
 
-} // namespace gwin
+}} // namespace gwin::detail
