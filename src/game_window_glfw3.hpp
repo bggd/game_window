@@ -1,9 +1,8 @@
 namespace gwin { namespace detail {
 
-struct GameWindowSDL2 : GameWindowBase {
+struct GameWindowGLFW3 : GameWindowBase {
 
-  SDL_Window* win = NULL;
-  SDL_GLContext glc = NULL;
+  GLFWwindow* win = NULL;
 
   bool open(const char* title, const GameWindowOptOpenGL& opt) override;
   void close() override;

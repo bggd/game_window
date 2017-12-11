@@ -1,22 +1,24 @@
-namespace gwin {
+#pragma once
 
-struct GameWindowOptOpenGL {
-
-  bool fullscreen;
-  bool resizable;
-  bool set_pos;
-  int32_t x, y;
-  uint32_t w, h;
-  bool gles;
-  uint8_t major;
-  uint8_t minor;
-  bool debug_ctx;
-  bool vsync;
-
-};
-
-} // namespace gwin
+#include "game_window_opt_opengl.hpp"
+#include "game_window_base.hpp"
 
 #ifdef GAME_WINDOW_SDL2
-using struct gwin::GameWindow struct gwin::detail::GameWindowSDL2;
+#include "game_window_sdl2.hpp"
+namespace gwin {
+using GameWindow = detail::GameWindowSDL2;
+}
+#ifdef GAME_WINDOW_IMPLEMENTATION
+#include "game_window_sdl2.cpp"
+#endif
+#endif
+
+#ifdef GAME_WINDOW_GLFW3
+#include "game_window_glfw3.hpp"
+namespace gwin {
+using GameWindow = detail::GameWindowGLFW3;
+}
+#ifdef GAME_WINDOW_IMPLEMENTATION
+#include "game_window_glfw3.cpp"
+#endif
 #endif
