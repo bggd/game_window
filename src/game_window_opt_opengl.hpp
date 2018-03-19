@@ -1,6 +1,6 @@
 namespace gwin {
 
-struct GameWindowOptOpenGL {
+struct GameWindowOptionOpenGL {
 
   bool fullscreen;
   bool resizable;

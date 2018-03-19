@@ -1,6 +1,6 @@
 namespace gwin { namespace detail {
 
-bool GameWindowGLFW3::open(const char* title, const GameWindowOptOpenGL& opt)
+bool GameWindowGLFW3::open(const char* title, const GameWindowOptionOpenGL& opt)
 {
   if (glfwInit() == GLFW_FALSE) { return false; }
 
@@ -32,9 +32,9 @@ void GameWindowGLFW3::close()
   }
 }
 
-GameWindowOptOpenGL GameWindowGLFW3::get_info()
+GameWindowOptionOpenGL GameWindowGLFW3::get_info()
 {
-  GameWindowOptOpenGL info;
+  GameWindowOptionOpenGL info;
 
   info.resizable = glfwGetWindowAttrib(this->win, GLFW_RESIZABLE);
   int32_t x, y;

@@ -1,6 +1,6 @@
 namespace gwin { namespace detail {
 
-bool GameWindowSDL2::open(const char* title, const GameWindowOptOpenGL& opt)
+bool GameWindowSDL2::open(const char* title, const GameWindowOptionOpenGL& opt)
 {
   SDL_GL_SetAttribute(SDL_GL_RED_SIZE, 8);
   SDL_GL_SetAttribute(SDL_GL_GREEN_SIZE, 8);
@@ -54,9 +54,9 @@ void GameWindowSDL2::close()
   }
 }
 
-GameWindowOptOpenGL GameWindowSDL2::get_info()
+GameWindowOptionOpenGL GameWindowSDL2::get_info()
 {
-  GameWindowOptOpenGL info;
+  GameWindowOptionOpenGL info;
 
   info.fullscreen = SDL_GetWindowFlags(this->win) & SDL_WINDOW_FULLSCREEN_DESKTOP;
   info.resizable = SDL_GetWindowFlags(this->win) & SDL_WINDOW_RESIZABLE;
