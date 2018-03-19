@@ -8,7 +8,7 @@
 namespace gwin {
 using GameWindow = detail::GameWindowSDL2;
 }
-#ifdef GAME_WINDOW_IMPLEMENTATION
+#ifdef GAME_WINDOW_IMPL
 #include "game_window_sdl2.cpp"
 #endif
 #endif
@@ -18,7 +18,7 @@ using GameWindow = detail::GameWindowSDL2;
 namespace gwin {
 using GameWindow = detail::GameWindowGLFW3;
 }
-#ifdef GAME_WINDOW_IMPLEMENTATION
+#ifdef GAME_WINDOW_IMPL
 #include "game_window_glfw3.cpp"
 #endif
 #endif
