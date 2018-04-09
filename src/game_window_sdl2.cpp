@@ -74,8 +74,8 @@ GameWindowOptionOpenGL GameWindowSDL2::get_info()
   int32_t major, minor;
   SDL_GL_GetAttribute(SDL_GL_CONTEXT_MAJOR_VERSION, &major);
   SDL_GL_GetAttribute(SDL_GL_CONTEXT_MINOR_VERSION, &minor);
-  info.major = major;
-  info.minor = minor;
+  info.major = static_cast<uint8_t>(major);
+  info.minor = static_cast<uint8_t>(minor);
   SDL_GL_GetAttribute(SDL_GL_CONTEXT_FLAGS, &v);
   info.debug_ctx = v & SDL_GL_CONTEXT_DEBUG_FLAG;
   info.vsync = SDL_GL_GetSwapInterval() == 1;
